@@ -51,6 +51,10 @@ app.get("/home", (req, res) => {
     res.sendFile(path.join(__dirname, "home.html"));
 });
 
+app.get("/api/tables", (req, res) => {
+    res.sendFile(path.join(__dirname, tables));
+});
+
 // Starts the server to begin listening
 // =============================================================
 app.listen(PORT, () => {
