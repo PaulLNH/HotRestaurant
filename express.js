@@ -18,16 +18,28 @@ app.use(bodyParser.json());
 // Table Reservations (DATA)
 // =============================================================
 var tables = [{
-        customerName: "Randy Gentry",
+        customerName: "Adam",
         phoneNumber: "555-555-5555",
         customerEmail: "dhrandy@gmail.com",
-        customerID: "rg101"
+        customerID: "Adam's Table of 5"
     },
     {
-        customerName: "Dzmitry",
+        customerName: "Corey",
         phoneNumber: "343453",
         customerEmail: "sds@dfs.sd",
-        customerID: "34232423"
+        customerID: "Corey's Table of 3"
+    },
+    {
+        customerName: "Jason",
+        phoneNumber: "343453",
+        customerEmail: "sds@dfs.sd",
+        customerID: "Jason's Table of 1"
+    },
+    {
+        customerName: "Matt",
+        phoneNumber: "343453",
+        customerEmail: "sds@dfs.sd",
+        customerID: "Matt's Table of 2"
     }
 ];
 
@@ -35,13 +47,13 @@ var waitList = [{
         customerName: "Outta Luck",
         phoneNumber: "555-555-5555",
         customerEmail: "dhrandy@gmail.com",
-        customerID: "rg101"
+        customerID: "Outta Luck's Table of 2"
     },
     {
         customerName: "Nosuch Lok",
         phoneNumber: "343453",
         customerEmail: "sds@dfs.sd",
-        customerID: "34232423"
+        customerID: "Nosuch Lok's Table of 4"
     }
 ];
 
@@ -74,6 +86,24 @@ app.get("/api/tables", (req, res) => {
 app.get("/api/waitlist", (req, res) => {
     return res.json(waitList);
 });
+
+// Create New Reservation - takes in JSON input
+app.post("/api/tables", (req, res) => {
+    // req.body hosts is equal to the JSON post sent from the user
+    // This works because of our body-parser middleware
+    var newReservation = req.body;
+
+    console.log(newReservation);
+
+    if (tables.length < 5) {
+        tables.push(newReservation);
+    } else {
+        waitList.push(newReservation);
+    }
+
+    res.json(newReservation);
+});
+
 
 // Starts the server to begin listening
 // =============================================================
