@@ -31,6 +31,20 @@ var tables = [{
     }
 ];
 
+var waitList = [{
+        customerName: "Outta Luck",
+        phoneNumber: "555-555-5555",
+        customerEmail: "dhrandy@gmail.com",
+        customerID: "rg101"
+    },
+    {
+        customerName: "Nosuch Lok",
+        phoneNumber: "343453",
+        customerEmail: "sds@dfs.sd",
+        customerID: "34232423"
+    }
+];
+
 // Routes
 // =============================================================
 
@@ -39,20 +53,26 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "home.html"));
 });
 
-app.get("/make", (req, res) => {
-    res.sendFile(path.join(__dirname, "make.html"));
+app.get("/reserve", (req, res) => {
+    res.sendFile(path.join(__dirname, "reserve.html"));
 });
 
-app.get("/view", (req, res) => {
-    res.sendFile(path.join(__dirname, "view.html"));
+app.get("/tables", (req, res) => {
+    res.sendFile(path.join(__dirname, "tables.html"));
 });
 
 app.get("/home", (req, res) => {
     res.sendFile(path.join(__dirname, "home.html"));
 });
 
+// Displays tables api JSON
 app.get("/api/tables", (req, res) => {
-    res.sendFile(path.join(__dirname, tables));
+    return res.json(tables);
+});
+
+// Displays wait list api JSON
+app.get("/api/waitlist", (req, res) => {
+    return res.json(waitList);
 });
 
 // Starts the server to begin listening
